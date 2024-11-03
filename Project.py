@@ -107,4 +107,32 @@ class WeDeliver:
             elif choice == '4':
                 break
             else:
-                print("Invalid choice. Please try again.")        
+                print("Invalid choice. Please try again.")
+
+    def cities_menu(self):
+        while True:
+            print("\nCities Menu:")
+            print("1. Show cities")
+            print("2. Search city")
+            print("3. Print neighboring cities")
+            print("4. Print drivers delivering to city")
+            print("5. Go back to the main menu")
+            choice = input("Enter your choice: ")
+
+            if choice == '1':
+                self.show_cities()
+            elif choice == '2':
+                key = input("Enter search key: ")
+                self.search_city(key)
+            elif choice == '3':
+                city = input("Enter city name: ")
+                self.print_neighboring_cities(city)
+            elif choice == '4':
+                city = input("Enter city name: ")
+                self.print_drivers_delivering_to_city(city)
+            elif choice == '5':
+                break
+            else:
+                print("Invalid choice. Please try again.")
+
+            
