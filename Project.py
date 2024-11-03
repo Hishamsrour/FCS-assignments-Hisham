@@ -29,4 +29,18 @@ class WeDeliver:
         else:
             print("One or both cities not found")
 
-    
+    def view_all_drivers(self):
+        for driver in self.drivers:
+            print(f"{driver.id}, {driver.name}, {driver.start_city}")
+
+    def check_similar_drivers(self):
+        city_drivers = {}
+        for driver in self.drivers:
+            if driver.start_city not in city_drivers:
+                city_drivers[driver.start_city] = []
+            city_drivers[driver.start_city].append(driver.name)
+        
+        for city, drivers in city_drivers.items():
+            print(f"{city}: {', '.join(drivers)}")
+
+            
