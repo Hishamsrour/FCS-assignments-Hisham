@@ -135,4 +135,22 @@ class WeDeliver:
             else:
                 print("Invalid choice. Please try again.")
 
+    def main_menu(self):
+        while True:
+            print("\nHello! Please enter:")
+            print("1. To go to the drivers' menu")
+            print("2. To go to the cities' menu")
+            print("3. To exit the system")
+            choice = input("Enter your choice: ")
+
+            if choice == '1':
+                self.drivers_menu()
+            elif choice == '2':
+                self.cities_menu()
+            elif choice == '3':
+                print("Thank you for using WeDeliver. Goodbye!")
+                break
+            else:
+                print("Invalid choice. Please try again.")
+
             
