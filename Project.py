@@ -43,4 +43,42 @@ class WeDeliver:
         for city, drivers in city_drivers.items():
             print(f"{city}: {', '.join(drivers)}")
 
+        def show_cities(self):
+        sorted_cities = sorted([city.name for city in self.cities], reverse=True)
+        print(", ".join(sorted_cities))
+
+    def search_city(self, key):
+        matching_cities = [city.name for city in self.cities if key.lower() in city.name.lower()]
+        print(", ".join(matching_cities))
+
+    def print_neighboring_cities(self, city_name):
+        city = next((c for c in self.cities if c.name == city_name), None)
+        if city:
+            neighbors = [neighbor.name for neighbor in city.neighbors]
+            print(f"Neighbors of {city_name}: {', '.join(neighbors)}")
+        else:
+            print("City not found")
+
+    def print_drivers_delivering_to_city(self, city_name):
+        def can_reach_city(start_city, target_city, visited=None):
+            if visited is None:
+                visited = set()
+            if start_city == target_city:
+                return True
+            visited.add(start_city)
+            for neighbor in start_city.neighbors:
+                if neighbor not in visited and can_reach_city(neighbor, target_city, visited):
+                    return True
+            return False
+
+        target_city = next((c for c in self.cities if c.name == city_name), None)
+        if target_city:
+            delivering_drivers = [
+                driver.name for driver in self.drivers
+                if can_reach_city(next(c for c in self.cities if c.name == driver.start_city), target_city)
+            ]
+            print(f"Drivers delivering to {city_name}: {', '.join(delivering_drivers)}")
+        else:
+            print("City not found")
+
             
