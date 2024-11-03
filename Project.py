@@ -81,4 +81,30 @@ class WeDeliver:
         else:
             print("City not found")
 
-            
+    def drivers_menu(self):
+        while True:
+            print("\nDrivers Menu:")
+            print("1. View all drivers")
+            print("2. Add a driver")
+            print("3. Check similar drivers")
+            print("4. Go back to the main menu")
+            choice = input("Enter your choice: ")
+
+            if choice == '1':
+                self.view_all_drivers()
+            elif choice == '2':
+                name = input("Enter driver name: ")
+                start_city = input("Enter start city: ")
+                if start_city not in [city.name for city in self.cities]:
+                    add_city = input("City not found. Do you want to add it? (y/n): ")
+                    if add_city.lower() == 'y':
+                        self.add_city(start_city)
+                    else:
+                        continue
+                self.add_driver(name, start_city)
+            elif choice == '3':
+                self.check_similar_drivers()
+            elif choice == '4':
+                break
+            else:
+                print("Invalid choice. Please try again.")        
