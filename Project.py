@@ -14,7 +14,14 @@ class WeDeliver:
         self.drivers = []
         self.cities = []
         self.next_id = 1
-
+        
+    def add_driver(self, name, start_city):
+        driver_id = f"ID{self.next_id:03d}"
+        self.next_id += 1
+        driver = Driver(driver_id, name, start_city)
+        self.drivers.append(driver)
+        print(f"Driver {name} added with ID {driver_id}")
+    
     def add_city(self, name):
         city = City(name)
         self.cities.append(city)
@@ -43,7 +50,7 @@ class WeDeliver:
         for city, drivers in city_drivers.items():
             print(f"{city}: {', '.join(drivers)}")
 
-        def show_cities(self):
+    def show_cities(self):
         sorted_cities = sorted([city.name for city in self.cities], reverse=True)
         print(", ".join(sorted_cities))
 
@@ -153,4 +160,23 @@ class WeDeliver:
             else:
                 print("Invalid choice. Please try again.")
 
-            
+system = WeDeliver()
+
+# Add some initial data
+system.add_city("Akkar")
+system.add_city("Saida")
+system.add_city("Jbeil")
+system.add_city("Beirut")
+system.add_city("Zahle")
+
+system.add_neighbor("Akkar", "Beirut")
+system.add_neighbor("Saida", "Beirut")
+system.add_neighbor("Jbeil", "Beirut")
+system.add_neighbor("Jbeil", "Zahle")
+
+system.add_driver("Max Verstappen", "Akkar")
+system.add_driver("Charles Leclerc", "Saida")
+system.add_driver("Lando Norris", "Jbeil")
+
+# Run the main menu
+system.main_menu()
